@@ -2,6 +2,16 @@ package com.pluralsight.model;
 
 public class Ride {
 
+	private int id;
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	private String name;
 	private int duration;
 

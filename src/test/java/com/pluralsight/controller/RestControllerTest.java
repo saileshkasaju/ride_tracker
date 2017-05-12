@@ -14,11 +14,23 @@ import org.junit.Test;
 public class RestControllerTest {
 
 	@Test(timeout=3000)
+	public void testCreateRide() {
+		RestTemplate restTemplate = new RestTemplate();
+
+		Ride ride = new Ride();
+
+		ride.setName("Morning Ride");
+		ride.setDuration(60);
+		ride = restTemplate.postForObject("http://localhost:8080/ride", ride, Ride.class);
+
+	}
+
+	@Test(timeout=3000)
 	public void testGetRides() {
 		RestTemplate restTemplate = new RestTemplate();
 
 		ResponseEntity<List<Ride>> ridesResponse = restTemplate.exchange(
-				"http://localhost:8080/ride_tracker/rides", HttpMethod.GET,
+				"http://localhost:8080/rides", HttpMethod.GET,
 				null, new ParameterizedTypeReference<List<Ride>>() {
 				});
 		List<Ride> rides = ridesResponse.getBody();
